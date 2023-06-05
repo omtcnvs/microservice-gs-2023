@@ -2,9 +2,12 @@ package br.com.fiap.gs.assembler;
 
 import static br.com.fiap.gs.utils.MessagesConstants.METHOD_NOT_IMPLEMENTED;
 
+import org.springframework.stereotype.Component;
+
 import br.com.fiap.gs.dtos.DadosCampoDTO;
 import br.com.fiap.gs.model.DadosCampo;
 
+@Component
 public class DadosCampoAssemblerMapper implements AssemblerMapper<DadosCampoDTO, DadosCampo>{
 
 	@Override
