@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: 'microservice-gs-2023'
+server:
+  port: 8080
