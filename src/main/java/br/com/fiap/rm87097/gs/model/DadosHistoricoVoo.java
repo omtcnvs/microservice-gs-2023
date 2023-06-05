@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class DadosVoo {
+public class DadosHistoricoVoo {
 
 	private LocalDateTime data;
 	

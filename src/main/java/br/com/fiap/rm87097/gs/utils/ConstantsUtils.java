@@ -10,4 +10,10 @@ public final class ConstantsUtils {
 	
 	public static final Null NULL_STATE = null;
 	
+	public static final String IDENTIFICACAO_URI = "/{identificacao}";
+	
+	public static final String EDIT_IDENTIFICACAO_URI = "/edit/{identificacao}";
+	
+	public static final String DELETE_IDENTIFICACAO_URI = "/delete/{identificacao}";
+	
 }

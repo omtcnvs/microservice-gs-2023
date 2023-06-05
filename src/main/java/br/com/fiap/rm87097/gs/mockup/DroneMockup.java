@@ -5,9 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiap.rm87097.gs.model.DadosVoo;
+import br.com.fiap.rm87097.gs.model.DadosHistoricoVoo;
 import br.com.fiap.rm87097.gs.model.Drone;
-import br.com.fiap.rm87097.gs.model.HistoricoVoo;
 import br.com.fiap.rm87097.gs.model.LicencaVoo;
 
 public class DroneMockup {
@@ -22,8 +21,8 @@ public class DroneMockup {
 		db.add(model);
 	}
 	
-	public static Drone findSourceByIdentificacao(String id) {
-		return db.stream().filter(data -> data.getIdentificacao().equals(id)).findFirst().get();
+	public static Drone findSourceByIdentificacao(String identificacao) {
+		return db.stream().filter(data -> data.getIdentificacao().equals(identificacao)).findFirst().get();
 	}
 	
 	public static Drone returnTheLastDrone() {
@@ -34,6 +33,10 @@ public class DroneMockup {
 		return db;
 	}
 	
+	public static void delete(Drone modelToDelete) {
+		db.remove(modelToDelete);
+	}
+	
     private static Drone buildDrone01() {
     	Drone model = Drone.builder()
                 .identificacao("Drone01")
@@ -42,14 +45,14 @@ public class DroneMockup {
                 .licencaVoo(buildLicencaVoo())
                 .capacidadeBateria(100)
                 .capacidadeCarga(280)
-                .historicoVoo(new HistoricoVoo())
+                .historicoVoo(new ArrayList<DadosHistoricoVoo>())
                 .horasDeVoo(3600).build();
     	model.getHistoricoVoo().add(buildDadosVoo());
 		return model;
     }
 
-	private static DadosVoo buildDadosVoo() {
-		return DadosVoo.builder()
+	private static DadosHistoricoVoo buildDadosVoo() {
+		return DadosHistoricoVoo.builder()
 				.altura(200)
 				.coordenadasFimBVoo(23465782956L)
 				.coordenadasInicioVoo(17283901203718L)

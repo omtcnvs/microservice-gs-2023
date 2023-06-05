@@ -1,21 +1,24 @@
-package br.com.fiap.rm87097.gs.model;
+package br.com.fiap.rm87097.gs.resources;
 
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 import java.util.List;
 
+import br.com.fiap.rm87097.gs.model.DadosHistoricoVoo;
+import br.com.fiap.rm87097.gs.model.LicencaVoo;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Drone {
+@NoArgsConstructor
+@AllArgsConstructor
+public class PutDroneResource {
 
-	@EqualsAndHashCode.Include
 	private String identificacao;
 	
 	private String modelo;
@@ -36,5 +39,5 @@ public class Drone {
 	public String toString() {
 		return reflectionToString(this);
 	}
-
+	
 }
