@@ -2,8 +2,8 @@ package br.com.fiap.gs.service;
 
 import static br.com.fiap.gs.mockup.DadosCampoMockup.add;
 import static br.com.fiap.gs.mockup.DadosCampoMockup.findSourceByIdentificacao;
-import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfEntityAlreadyExistsInDB;
-import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfEntityDidNotExistsInDB;
+import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfDadosCampoAlreadyExistsInDB;
+import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfDadosCampoDidNotExistsInDB;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.fiap.gs.assembler.DadosCampoAssemblerMapper;
 import br.com.fiap.gs.dtos.DadosCampoDTO;
+import br.com.fiap.gs.mockup.DadosCampoMockup;
 import br.com.fiap.gs.mockup.DroneMockup;
 import br.com.fiap.gs.model.DadosCampo;
 import br.com.fiap.gs.model.Drone;
@@ -29,18 +30,18 @@ public class DadosCampoService {
 	// ************************************
 	
 	public void save(@Valid DadosCampoDTO resource) {
-		validateIfEntityAlreadyExistsInDB(resource.getIdentificacaoDrone());
+		validateIfDadosCampoAlreadyExistsInDB(resource.getIdentificacaoDrone());
 		add(assembler.toModel(resource));
 	}
 
 	public DadosCampo findByIdentificacao(String identificacaoDrone) {
-		validateIfEntityDidNotExistsInDB(identificacaoDrone);
+		validateIfDadosCampoDidNotExistsInDB(identificacaoDrone);
 		return findSourceByIdentificacao(identificacaoDrone);
 	}
 
 	public DadosCampo putDrone(String identificacaoDrone, @Valid DadosCampoDTO resource) {
-		validateIfEntityDidNotExistsInDB(identificacaoDrone);
-		validateIfEntityAlreadyExistsInDB(resource.getIdentificacaoDrone());
+		validateIfDadosCampoDidNotExistsInDB(identificacaoDrone);
+		validateIfDadosCampoAlreadyExistsInDB(resource.getIdentificacaoDrone());
 		return updateEntityFields(identificacaoDrone, resource);
 	}
 	
@@ -54,7 +55,7 @@ public class DadosCampoService {
 	}
 
 	public List<DadosCampo> getAll() {
-		return getAll();
+		return DadosCampoMockup.getAll();
 	}
 
 	public void deleteByIdentificacao(String identificacao) {

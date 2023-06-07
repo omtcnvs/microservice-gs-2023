@@ -1,13 +1,9 @@
 package br.com.fiap.gs.dtos;
 
-import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
-
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -34,7 +30,6 @@ public class DadosCampoDTO {
 	private Double direcao;
 
 	@NotNull(message = "A data e hora do voo deve ser informada.")
-	@JsonFormat(shape = STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
 	private LocalDateTime dataEHora;
 
 }

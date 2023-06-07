@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import br.com.fiap.gs.mockup.DadosCampoMockup;
 import br.com.fiap.gs.mockup.DroneMockup;
 
 @SpringBootApplication
@@ -14,6 +15,7 @@ public class MicroserviceGs2023Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviceGs2023Application.class, args);
+		DadosCampoMockup.load();
 		DroneMockup.load();
 	}
 
