@@ -3,7 +3,6 @@ package br.com.fiap.gs.model;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,15 +13,13 @@ import lombok.Setter;
 @Builder
 public class DadosHistoricoVoo {
 
-	private LocalDateTime data;
-	
-	private LocalTime horario;
+	private LocalDateTime dataEHora;
 	
 	private Integer duracaoVoo;
 	
 	private Long coordenadasInicioVoo;
 	
-	private Long coordenadasFimBVoo;
+	private Long coordenadasFimVoo;
 	
 	private Integer altura;
 	

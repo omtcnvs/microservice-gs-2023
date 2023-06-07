@@ -1,7 +1,6 @@
 package br.com.fiap.gs.builders;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import br.com.fiap.gs.model.DadosCampo;
@@ -28,11 +27,10 @@ public class FactoryObjects {
     private static DadosHistoricoVoo buildDadosVoo() {
 		return DadosHistoricoVoo.builder()
 				.altura(200)
-				.coordenadasFimBVoo(23465782956L)
+				.coordenadasFimVoo(23465782956L)
 				.coordenadasInicioVoo(17283901203718L)
-				.data(LocalDateTime.now())
+				.dataEHora(LocalDateTime.now())
 				.duracaoVoo(200)
-				.horario(LocalTime.now())
 				.velocidadeMedia(180)
 				.build();
 	}

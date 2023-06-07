@@ -4,7 +4,6 @@ import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToStrin
 
 import java.util.List;
 
-import br.com.fiap.gs.model.DadosHistoricoVoo;
 import br.com.fiap.gs.model.LicencaVoo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,7 +31,7 @@ public class PutDroneDTO {
 	
 	private Integer horasDeVoo;
 	
-	private List<DadosHistoricoVoo> historicoVoo;
+	private List<DadosHistoricoVooDTO> historicoVoo;
 	
 	@Override
 	public String toString() {

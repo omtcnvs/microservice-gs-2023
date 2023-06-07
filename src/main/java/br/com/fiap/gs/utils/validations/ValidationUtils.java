@@ -1,18 +1,27 @@
 package br.com.fiap.gs.utils.validations;
 
+import static java.util.Objects.nonNull;
+
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 import br.com.fiap.gs.exceptions.EntityAlreadyExists;
 import br.com.fiap.gs.exceptions.EntityNotFounded;
 import br.com.fiap.gs.mockup.DadosCampoMockup;
 import br.com.fiap.gs.mockup.DroneMockup;
+import br.com.fiap.gs.model.DadosCampo;
+import br.com.fiap.gs.model.Drone;
 
 public class ValidationUtils {
 
 	public static void validateIfEntityAlreadyExistsInDB(String identificacao) {
-		if (Objects.nonNull(DroneMockup.findSourceByIdentificacao(identificacao))) {
-			throw new EntityAlreadyExists("Este drone já existe na base de dados, por favor, tente outra identificação.");
+		Drone drone;
+		try {
+			drone = DroneMockup.findSourceByIdentificacao(identificacao);
+		} catch (NoSuchElementException e) {
+			return;
+		}
+		if (nonNull(drone)) {
+			throw new EntityAlreadyExists("Este drone já existe na base de dados, por favor, tente novamente.");
 		}
 	}
 
@@ -25,8 +34,14 @@ public class ValidationUtils {
 	}
 	
 	public static void validateIfDadosCampoAlreadyExistsInDB(String identificacao) {
-		if (Objects.nonNull(DadosCampoMockup.findSourceByIdentificacao(identificacao))) {
-			throw new EntityAlreadyExists("Este drone já existe na base de dados, por favor, tente outra identificação.");
+		DadosCampo dadosCampo;
+		try {
+			dadosCampo = DadosCampoMockup.findSourceByIdentificacao(identificacao);
+		} catch (NoSuchElementException e) {
+			return;
+		}
+		if (nonNull(dadosCampo)) {
+			throw new EntityAlreadyExists("Estes dados de campo já existe na base de dados, por favor, tente novamente.");
 		}
 	}
 

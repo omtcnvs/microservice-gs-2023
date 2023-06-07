@@ -53,7 +53,7 @@ public class DroneService {
 		Drone modelToUpdate = findSourceByIdentificacao(identificacao);
 		modelToUpdate.setCapacidadeBateria(isNull(resource.getCapacidadeBateria()) ?  modelToUpdate.getCapacidadeBateria() : resource.getCapacidadeBateria());
 		modelToUpdate.setCapacidadeCarga(isNull(resource.getCapacidadeCarga()) ?  modelToUpdate.getCapacidadeCarga() : resource.getCapacidadeCarga());
-		modelToUpdate.setHistoricoVoo(isNull(resource.getHistoricoVoo()) ?  modelToUpdate.getHistoricoVoo() : resource.getHistoricoVoo());
+		modelToUpdate.setHistoricoVoo(isNull(resource.getHistoricoVoo()) ?  modelToUpdate.getHistoricoVoo() : assembler.historicoVooParse(resource.getHistoricoVoo()));
 		modelToUpdate.setHorasDeVoo(isNull(resource.getHorasDeVoo()) ?  modelToUpdate.getHorasDeVoo() : resource.getHorasDeVoo());
 		modelToUpdate.setIdentificacao(isNull(resource.getIdentificacao()) ?  modelToUpdate.getIdentificacao() : resource.getIdentificacao());
 		modelToUpdate.setLicencaVoo(isNull(resource.getLicencaVoo()) ?  modelToUpdate.getLicencaVoo() : resource.getLicencaVoo());
