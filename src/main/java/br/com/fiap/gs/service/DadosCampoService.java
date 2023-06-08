@@ -40,7 +40,6 @@ public class DadosCampoService {
 
 	public DadosCampo put(String identificacao, @Valid DadosCampoDTO resource) {
 		validateIfDadosCampoDidNotExistsInDB(identificacao);
-		validateIfDadosCampoAlreadyExistsInDB(resource.getIdentificacaoDrone());
 		return updateEntityFields(identificacao, resource);
 	}
 	
