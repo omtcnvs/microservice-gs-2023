@@ -41,7 +41,6 @@ public class DroneService {
 
 	public Drone putDrone(String identificacao, @Valid PutDroneDTO resource) {
 		validateIfEntityDidNotExistsInDB(identificacao);
-		validateIfEntityAlreadyExistsInDB(resource.getIdentificacao());
 		return updateEntityFields(identificacao, resource);
 	}
 	
