@@ -4,6 +4,7 @@ import static br.com.fiap.gs.mockup.DadosCampoMockup.add;
 import static br.com.fiap.gs.mockup.DadosCampoMockup.findSourceByIdentificacao;
 import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfDadosCampoAlreadyExistsInDB;
 import static br.com.fiap.gs.utils.validations.ValidationUtils.validateIfDadosCampoDidNotExistsInDB;
+import static java.util.Objects.isNull;
 
 import java.util.List;
 
@@ -15,9 +16,7 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.gs.assembler.DadosCampoAssemblerMapper;
 import br.com.fiap.gs.dtos.DadosCampoDTO;
 import br.com.fiap.gs.mockup.DadosCampoMockup;
-import br.com.fiap.gs.mockup.DroneMockup;
 import br.com.fiap.gs.model.DadosCampo;
-import br.com.fiap.gs.model.Drone;
 
 @Service
 public class DadosCampoService {
@@ -34,15 +33,15 @@ public class DadosCampoService {
 		add(assembler.toModel(resource));
 	}
 
-	public DadosCampo findByIdentificacao(String identificacaoDrone) {
-		validateIfDadosCampoDidNotExistsInDB(identificacaoDrone);
-		return findSourceByIdentificacao(identificacaoDrone);
+	public DadosCampo findByIdentificacao(String identificacao) {
+		validateIfDadosCampoDidNotExistsInDB(identificacao);
+		return findSourceByIdentificacao(identificacao);
 	}
 
-	public DadosCampo putDrone(String identificacaoDrone, @Valid DadosCampoDTO resource) {
-		validateIfDadosCampoDidNotExistsInDB(identificacaoDrone);
+	public DadosCampo put(String identificacao, @Valid DadosCampoDTO resource) {
+		validateIfDadosCampoDidNotExistsInDB(identificacao);
 		validateIfDadosCampoAlreadyExistsInDB(resource.getIdentificacaoDrone());
-		return updateEntityFields(identificacaoDrone, resource);
+		return updateEntityFields(identificacao, resource);
 	}
 	
 	// ************************************
@@ -51,7 +50,13 @@ public class DadosCampoService {
 
 	private DadosCampo updateEntityFields(String identificacao, DadosCampoDTO resource) {
 		DadosCampo modelToUpdate = findSourceByIdentificacao(identificacao);
-		return modelToUpdate;
+		modelToUpdate.setDataEHora(isNull(resource.getDataEHora()) ? modelToUpdate.getDataEHora() : resource.getDataEHora());
+		modelToUpdate.setDirecao(isNull(resource.getDirecao()) ? modelToUpdate.getDirecao() : resource.getDirecao());
+		modelToUpdate.setIdentificacaoDrone(isNull(resource.getIdentificacaoDrone()) ? modelToUpdate.getIdentificacaoDrone() : resource.getIdentificacaoDrone());
+		modelToUpdate.setLagitude(isNull(resource.getLagitude()) ? modelToUpdate.getLagitude() : resource.getLagitude());
+		modelToUpdate.setLongitude(isNull(resource.getLongitude()) ? modelToUpdate.getLongitude() : resource.getLongitude());
+		modelToUpdate.setVelocidade(isNull(resource.getVelocidade()) ? modelToUpdate.getVelocidade() : resource.getVelocidade());
+		return modelToUpdate;	
 	}
 
 	public List<DadosCampo> getAll() {
@@ -59,8 +64,9 @@ public class DadosCampoService {
 	}
 
 	public void deleteByIdentificacao(String identificacao) {
-		Drone modelToDelete = DroneMockup.findSourceByIdentificacao(identificacao);
-		DroneMockup.delete(modelToDelete);
+		validateIfDadosCampoDidNotExistsInDB(identificacao);
+		DadosCampo modelToDelete = DadosCampoMockup.findSourceByIdentificacao(identificacao);
+		DadosCampoMockup.delete(modelToDelete);
 	}
 	
 }

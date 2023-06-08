@@ -55,7 +55,7 @@ public class DadosCampoController {
 	@PutMapping(value = EDIT_IDENTIFICACAO_URI)
 	public ResponseEntity<DadosCampo> putDrone(@PathVariable String identificacao,
 			@RequestBody @Valid DadosCampoDTO resource) {
-		DadosCampo modelUpdated = service.putDrone(identificacao, resource);
+		DadosCampo modelUpdated = service.put(identificacao, resource);
 		return ok(modelUpdated);
 	}
 
